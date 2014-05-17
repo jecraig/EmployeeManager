@@ -237,7 +237,7 @@ namespace EmployeeManager.Models
 				var employees = new ObservableCollection<Employee>();
 
 				var random = new Random();
-				for (int i = 0; i < 20; i++)
+				for (int i = 0; i < 5; i++)
 					employees.Add(GenerateRandomEmployee(random, employees));
 
 				getEmployees = employees;

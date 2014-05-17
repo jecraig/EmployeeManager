@@ -36,24 +36,13 @@ namespace EmployeeManager.ViewModels
 			}
 		}
 
-		private ICommand _changeEmployeeCommand;
-		public ICommand ChangeEmployeeCommand
-		{
-			get { return _changeEmployeeCommand; }
-			set
-			{
-				_changeEmployeeCommand = value;
-				OnPropertyChanged("ChangeEmployeeCommand");
-			}
-		}
-
 		public ViewEmployeeVM()
 		{
-			InitializeCommand();
+			Initialize();
 			LoadEmployee(null);
 		}
 
-		private void InitializeCommand()
+		private void Initialize()
 		{
 			SaveEmployeeCommand = new SaveEmployeeCommand(UpdatePerson);
 			Mediator.GetInstance().SelectedEmployeeChanged += (s, e) =>

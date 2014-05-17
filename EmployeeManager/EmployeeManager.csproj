@@ -58,6 +58,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Commands\Mediator.cs" />
+    <Compile Include="Commands\NewEmployeeCommand.cs" />
     <Compile Include="Commands\SelectedEmployeeEventArgs.cs" />
     <Compile Include="Commands\SaveEmployeeCommand.cs" />
     <Compile Include="Converters\BoolConverter.cs" />

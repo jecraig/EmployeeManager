@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace EmployeeManager.ViewModels
 {
@@ -26,6 +27,7 @@ namespace EmployeeManager.ViewModels
 
 		public EmployeeListVM()
 		{
+			Initialize();
 			LoadEmployeeList();
 		}
 
@@ -41,12 +43,31 @@ namespace EmployeeManager.ViewModels
 				if (value != _selectedEmployee)
 				{
 					_selectedEmployee = value;
-
 					Mediator.GetInstance().OnSelectedEmployeeChanged(this, _selectedEmployee);
-
 					OnPropertyChanged("SelectedCustomer");
 				}
 			}
+		}
+
+		private ICommand _newEmployeeCommand;
+		public ICommand NewEmployeeCommand
+		{
+			get { return _newEmployeeCommand; }
+			set
+			{
+				_newEmployeeCommand = value;
+				OnPropertyChanged("NewEmployeeCommand");
+			}
+		}
+
+		private void Initialize()
+		{
+			NewEmployeeCommand = new NewEmployeeCommand(NewEmployee);
+		}
+
+		private void NewEmployee()
+		{
+			Mediator.GetInstance().OnSelectedEmployeeChanged(this, null);
 		}
 
 		private void LoadEmployeeList()

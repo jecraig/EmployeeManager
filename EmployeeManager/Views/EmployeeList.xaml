@@ -15,7 +15,7 @@
 		<GroupBox Header="Employees" VerticalAlignment="Top" HorizontalAlignment="Left">
 			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 				<StackPanel>
-					<Button Name="AddEmployee" Content="Add New Employee" />
+					<Button Name="AddEmployee" Content="Add New Employee" Command="{Binding NewEmployeeCommand}" />
 					<ListBox ItemsSource="{Binding ModelEmployeeList}" SelectedItem="{Binding SelectedEmployee}" />
 				</StackPanel>
 			</ScrollViewer>
