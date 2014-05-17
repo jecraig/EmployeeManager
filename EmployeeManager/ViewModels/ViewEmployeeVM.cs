@@ -1,4 +1,5 @@
-﻿using EmployeeManager.Models;
+﻿using EmployeeManager.Commands;
+using EmployeeManager.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -91,27 +92,6 @@ namespace EmployeeManager.ViewModels
 			{
 				return ModelEmployee.IsValid;
 			}
-		}
-	}
-
-	public class SaveEmployeeCommand : ICommand
-	{
-		Action executeMethod;
-
-		public SaveEmployeeCommand(Action updateEmployee)
-		{
-			executeMethod = updateEmployee;
-		}
-
-		public bool CanExecute(object parameter)
-		{
-			return true;
-		}
-
-		public event EventHandler CanExecuteChanged;
-		public void Execute(object parameter)
-		{
-			executeMethod.Invoke();
 		}
 	}
 }
