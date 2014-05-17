@@ -11,8 +11,6 @@ namespace EmployeeManager.ViewModels
 {
 	public class ViewEmployeeVM
 	{
-		private Random random = new Random();
-
 		private Employee modelEmployee;
 		public Employee ModelEmployee
 		{
@@ -48,41 +46,21 @@ namespace EmployeeManager.ViewModels
 
 		private void UpdatePerson()
 		{
-			if (CanSave)
-			{
-				if (!Employee.GetEmployees().Contains(ModelEmployee))
-				{
-					string idBeginning = ModelEmployee.FirstName[0].ToString() + ModelEmployee.LastName[0].ToString();
-					string id = "";
-					do
-					{
-						id = idBeginning + random.Next(10000, 99999);
-					} while (Employee.GetEmployees().FirstOrDefault(e => e.Id == id) != null);
-					ModelEmployee.Id = id;
-
-					Employee.GetEmployees().Add(ModelEmployee);
-				}
-			}
+			if (ModelEmployee.IsHourly)
+				ModelEmployee.FirstName += "Hourly";
+			if (!ModelEmployee.IsHourly)
+				ModelEmployee.FirstName += "Salary";
 		}
 
 		private void LoadEmployee(string employeeId)
 		{
-			if (employeeId == null)
+			if(employeeId == null)
 			{
 				ModelEmployee = new Employee();
 				return;
 			}
 
-			var selectedEmployee = Employee.GetEmployees().FirstOrDefault(e => e.Id == employeeId);
-			if (selectedEmployee == null)
-			{
-				ModelEmployee = new Employee();
-				return;
-			}
-			else
-			{
-				ModelEmployee = selectedEmployee;
-			}
+			if(Employee.GetEmployees())
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -90,14 +68,6 @@ namespace EmployeeManager.ViewModels
 		{
 			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(property));
-		}
-
-		protected bool CanSave
-		{
-			get
-			{
-				return ModelEmployee.IsValid;
-			}
 		}
 	}
 
@@ -116,6 +86,7 @@ namespace EmployeeManager.ViewModels
 		}
 
 		public event EventHandler CanExecuteChanged;
+
 		public void Execute(object parameter)
 		{
 			executeMethod.Invoke();

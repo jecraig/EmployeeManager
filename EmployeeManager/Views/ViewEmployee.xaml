@@ -15,7 +15,7 @@
 	</UserControl.Resources>
  
 	<Grid x:Name="EmployeeViewRoot" DataContext="{StaticResource ViewEmployeeVM}">
-		<GroupBox Header="{Binding ModelEmployee.FirstName}" VerticalAlignment="Top" HorizontalAlignment="Left">
+		<GroupBox Header="{Binding ModelEmployee.Id}" VerticalAlignment="Top" HorizontalAlignment="Left">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />

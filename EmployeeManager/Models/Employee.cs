@@ -90,6 +90,12 @@ namespace EmployeeManager.Models
 			}
 		}
 
+		public Employee()
+		{
+			IsHourly = true;
+			Id = "New Employee";
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void OnPropertyChanged(string property)
 		{
@@ -100,6 +106,38 @@ namespace EmployeeManager.Models
 		public string Error
 		{
 			get { return null; }
+		}
+
+		static List<string> ValidatedProperties
+		{
+			get
+			{
+				return new List<string>{
+					"FirstName",
+					"LastName",
+					"Email",
+					"PhoneNumber",
+					"Wage",
+				};
+			}
+		}
+
+		/// <summary>
+		/// Returns true if this object has no validation errors.
+		/// </summary>
+		public bool IsValid
+		{
+			get
+			{
+				foreach (string property in ValidatedProperties)
+				{
+
+					if (this[property] != null) // there is an error
+						return false;
+				}
+
+				return true;
+			}
 		}
 
 		public string this[string columnName]
