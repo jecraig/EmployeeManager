@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace EmployeeManager.ViewModels
 {
@@ -24,8 +25,26 @@ namespace EmployeeManager.ViewModels
 
 		public EmployeeListVM()
 		{
-			//InitializeCommand();
 			LoadEmployeeList();
+		}
+
+		private Employee _selectedEmployee;
+		public Employee SelectedEmployee
+		{
+			get
+			{
+				return _selectedEmployee;
+			}
+			set
+			{
+				if (value != _selectedEmployee)
+				{
+					var originalValue = _selectedEmployee;
+					_selectedEmployee = value;
+
+					OnPropertyChanged("SelectedCustomer");
+				}
+			}
 		}
 
 		private void LoadEmployeeList()

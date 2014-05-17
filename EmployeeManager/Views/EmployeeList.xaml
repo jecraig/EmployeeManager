@@ -16,9 +16,7 @@
 			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 				<StackPanel>
 					<Button Name="AddEmployee" Content="Add New Employee" />
-					<Separator />
-					<ListBox ItemsSource="{Binding ModelEmployeeList}">
-					</ListBox>
+					<ListBox ItemsSource="{Binding ModelEmployeeList}" SelectedItem="{Binding SelectedEmployee}" />
 				</StackPanel>
 			</ScrollViewer>
 		</GroupBox>
