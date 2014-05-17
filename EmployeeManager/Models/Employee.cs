@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManager.Models
 {
-	class Employee : INotifyPropertyChanged, IDataErrorInfo
+	public class Employee : INotifyPropertyChanged, IDataErrorInfo
 	{
 		public const double MinimumWage = 7.25;
 
@@ -68,14 +68,14 @@ namespace EmployeeManager.Models
 			}
 		}
 
-		private EmploymentType _employmentType;
-		public EmploymentType EmploymentType
+		private bool _isHourly;
+		public bool IsHourly
 		{
-			get { return _employmentType; }
+			get { return _isHourly; }
 			set
 			{
-				_employmentType = value;
-				OnPropertyChanged("EmploymentType");
+				_isHourly = value;
+				OnPropertyChanged("IsHourly");
 			}
 		}
 
@@ -156,12 +156,5 @@ namespace EmployeeManager.Models
 
 			return employees;
 		}
-	}
-
-
-	public enum EmploymentType
-	{
-		Hourly,
-		Salary,
 	}
 }

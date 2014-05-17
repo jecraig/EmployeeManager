@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EmployeeManager.ViewModels
 {
-	class ViewEmployeeVM
+	public class ViewEmployeeVM
 	{
 		private Employee modelEmployee;
 		public Employee ModelEmployee
@@ -46,7 +46,10 @@ namespace EmployeeManager.ViewModels
 
 		private void UpdatePerson()
 		{
-			ModelEmployee.FirstName += "Ha";
+			if (ModelEmployee.IsHourly)
+				ModelEmployee.FirstName += "Hourly";
+			if (!ModelEmployee.IsHourly)
+				ModelEmployee.FirstName += "Salary";
 		}
 
 		private void LoadEmployee()

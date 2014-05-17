@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManager.ViewModels
 {
-	class EmployeeListVM
+	public class EmployeeListVM
 	{
 	}
 }
