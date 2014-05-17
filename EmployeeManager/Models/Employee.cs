@@ -186,13 +186,68 @@ namespace EmployeeManager.Models
 			}
 		}
 
+		public string GenerateUniqueId(Random random, ICollection<Employee> collection)
+		{
+			if (string.IsNullOrWhiteSpace(this.FirstName) || string.IsNullOrWhiteSpace(this.LastName))
+				return null;
+
+			string idBeginning = this.FirstName[0].ToString() + this.LastName[0].ToString();
+			string id = "";
+			do
+			{
+				id = idBeginning + random.Next(10000, 100000);
+			} while (collection.FirstOrDefault(e => e.Id == id) != null);
+			return id;
+		}
+
+		private static List<string> RandomNames = new List<string>
+		{
+			"Brandee","Fouts","Zachery","Lopresti",
+			"Daniell","Praylow","Francisca","Cowans",
+			"Marsha","Pasquariello","Brandon","Lamirande",
+			"Jong","Premo","Franklin","Perry",
+			"Preston","Malm","Nancie","Ramsey",
+			"Flo","Cheney","Melda","Raynes",
+			"Janee","Hedlund","Milly","Purcell",
+			"Erasmo","Candelario","Percy","Greg",
+			"Kristel","Maynes","Mariann","Petrarca",
+			"Ross","Brewton","Darlena","Nordyk",
+		};
+
+		private static Employee GenerateRandomEmployee(Random random, ICollection<Employee> collection)
+		{
+			var newEmployee = new Employee();
+
+			newEmployee.FirstName = RandomNames[random.Next(RandomNames.Count)];
+			newEmployee.LastName = RandomNames[random.Next(RandomNames.Count)];
+			newEmployee.Email = newEmployee.FirstName + newEmployee.LastName + "@email.com";
+			newEmployee.PhoneNumber = random.Next(100, 1000).ToString() + random.Next(100, 1000).ToString() + random.Next(1000, 10000).ToString();
+			newEmployee.IsHourly = random.Next(2) == 0;
+			newEmployee.Wage = random.Next(8, 100000);
+			newEmployee.Id = newEmployee.GenerateUniqueId(random, collection);
+
+			return newEmployee;
+		}
+
+		private static ObservableCollection<Employee> getEmployees;
 		public static ObservableCollection<Employee> GetEmployees()
 		{
-			var employees = new ObservableCollection<Employee>();
+			if (getEmployees == null)
+			{
+				var employees = new ObservableCollection<Employee>();
 
+				var random = new Random();
+				for (int i = 0; i < 20; i++)
+					employees.Add(GenerateRandomEmployee(random, employees));
 
+				getEmployees = employees;
+			}
+			return getEmployees;
+		}
 
-			return employees;
+		public override string ToString()
+		{
+			return this.FirstName + " " + this.LastName;
 		}
 	}
 }

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace EmployeeManager.ViewModels
 {
-	public class ViewEmployeeVM
+	public class ViewEmployeeVM : INotifyPropertyChanged
 	{
 		private Random random = new Random();
 
@@ -52,14 +52,7 @@ namespace EmployeeManager.ViewModels
 			{
 				if (!Employee.GetEmployees().Contains(ModelEmployee))
 				{
-					string idBeginning = ModelEmployee.FirstName[0].ToString() + ModelEmployee.LastName[0].ToString();
-					string id = "";
-					do
-					{
-						id = idBeginning + random.Next(10000, 99999);
-					} while (Employee.GetEmployees().FirstOrDefault(e => e.Id == id) != null);
-					ModelEmployee.Id = id;
-
+					ModelEmployee.Id = ModelEmployee.GenerateUniqueId(random, Employee.GetEmployees());
 					Employee.GetEmployees().Add(ModelEmployee);
 				}
 			}
