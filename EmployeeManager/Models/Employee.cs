@@ -11,6 +11,8 @@ namespace EmployeeManager.Models
 {
 	class Employee : INotifyPropertyChanged, IDataErrorInfo
 	{
+		public const double MinimumWage = 7.25;
+
 		private string _id;
 		public string Id
 		{
@@ -77,6 +79,17 @@ namespace EmployeeManager.Models
 			}
 		}
 
+		private double _wage;
+		public double Wage
+		{
+			get { return _wage; }
+			set
+			{
+				_wage = value;
+				OnPropertyChanged("Wage");
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void OnPropertyChanged(string property)
 		{
@@ -113,12 +126,6 @@ namespace EmployeeManager.Models
 						result = "Please enter a last name";
 				}
 
-				if (columnName == "EmploymentType")
-				{
-					if (EmploymentType == null)
-						result = "Please select an employment type";
-				}
-
 				if (columnName == "Email")
 				{
 					if (string.IsNullOrEmpty(Email))
@@ -129,6 +136,12 @@ namespace EmployeeManager.Models
 				{
 					if (string.IsNullOrEmpty(PhoneNumber))
 						result = "Please enter a phone number";
+				}
+
+				if (columnName == "Wage")
+				{
+					if (Wage < MinimumWage)
+						result = "Enter a valid wage";
 				}
 
 				return result;
