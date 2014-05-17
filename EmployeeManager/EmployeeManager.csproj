@@ -57,6 +57,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\Mediator.cs" />
+    <Compile Include="Commands\SelectedEmployeeEventArgs.cs" />
     <Compile Include="Commands\SaveEmployeeCommand.cs" />
     <Compile Include="Converters\BoolConverter.cs" />
     <Compile Include="Main.xaml.cs">

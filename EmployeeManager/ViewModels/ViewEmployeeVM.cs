@@ -14,25 +14,36 @@ namespace EmployeeManager.ViewModels
 	{
 		private Random random = new Random();
 
-		private Employee modelEmployee;
+		private Employee _modelEmployee;
 		public Employee ModelEmployee
 		{
-			get { return modelEmployee; }
+			get { return _modelEmployee; }
 			set
 			{
-				modelEmployee = value;
+				_modelEmployee = value;
 				OnPropertyChanged("ModelEmployee");
 			}
 		}
 
-		private ICommand saveEmployeeCommand;
+		private ICommand _saveEmployeeCommand;
 		public ICommand SaveEmployeeCommand
 		{
-			get { return saveEmployeeCommand; }
+			get { return _saveEmployeeCommand; }
 			set
 			{
-				saveEmployeeCommand = value;
+				_saveEmployeeCommand = value;
 				OnPropertyChanged("SaveEmployeeCommand");
+			}
+		}
+
+		private ICommand _changeEmployeeCommand;
+		public ICommand ChangeEmployeeCommand
+		{
+			get { return _changeEmployeeCommand; }
+			set
+			{
+				_changeEmployeeCommand = value;
+				OnPropertyChanged("ChangeEmployeeCommand");
 			}
 		}
 
@@ -45,6 +56,10 @@ namespace EmployeeManager.ViewModels
 		private void InitializeCommand()
 		{
 			SaveEmployeeCommand = new SaveEmployeeCommand(UpdatePerson);
+			Mediator.GetInstance().SelectedEmployeeChanged += (s, e) =>
+			{
+				LoadEmployee(e.Employee);
+			};
 		}
 
 		private void UpdatePerson()
@@ -59,15 +74,15 @@ namespace EmployeeManager.ViewModels
 			}
 		}
 
-		private void LoadEmployee(string employeeId)
+		private void LoadEmployee(Employee employee)
 		{
-			if (employeeId == null)
+			if (employee == null || employee.Id == null)
 			{
 				ModelEmployee = new Employee();
 				return;
 			}
 
-			var selectedEmployee = Employee.GetEmployees().FirstOrDefault(e => e.Id == employeeId);
+			var selectedEmployee = Employee.GetEmployees().FirstOrDefault(e => e.Id == employee.Id);
 			if (selectedEmployee == null)
 			{
 				ModelEmployee = new Employee();

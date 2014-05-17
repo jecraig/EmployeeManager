@@ -1,4 +1,5 @@
-﻿using EmployeeManager.Models;
+﻿using EmployeeManager.Commands;
+using EmployeeManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,8 +40,9 @@ namespace EmployeeManager.ViewModels
 			{
 				if (value != _selectedEmployee)
 				{
-					var originalValue = _selectedEmployee;
 					_selectedEmployee = value;
+
+					Mediator.GetInstance().OnSelectedEmployeeChanged(this, _selectedEmployee);
 
 					OnPropertyChanged("SelectedCustomer");
 				}
