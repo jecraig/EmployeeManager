@@ -3,19 +3,52 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:local="clr-namespace:EmployeeManager.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-			<RowDefinition Height="Auto" />
-		</Grid.RowDefinitions>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*" />
-			<ColumnDefinition Width="2*" />
-		</Grid.ColumnDefinitions>
-		
-		<TextBox Text="First Name" />
-    </Grid>
+             d:DesignHeight="300" Width="350"
+			 MinWidth="350">
+
+	<UserControl.Resources>
+		<local:ViewEmployeeVM x:Key="ViewEmployeeVM" />
+	</UserControl.Resources>
+
+	<Grid x:Name="EmployeeViewRoot" DataContext="{StaticResource ViewEmployeeVM}">
+		<GroupBox Header="{Binding ModelEmployee.FirstName}" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="Auto" />
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="2*" />
+				</Grid.ColumnDefinitions>
+
+				<TextBlock Text="First Name" Grid.Row="0" Grid.Column="0" />
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ModelEmployee.FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<TextBlock Text="Last Name" Grid.Row="1" Grid.Column="0" />
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding ModelEmployee.LastName, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<TextBlock Text="Email" Grid.Row="2" Grid.Column="0" />
+				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding ModelEmployee.Email, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<TextBlock Text="Phone Number" Grid.Row="3" Grid.Column="0" />
+				<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding ModelEmployee.PhoneNumber, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<TextBlock Text="Wage" Grid.Row="4" Grid.Column="0" />
+				<TextBox Grid.Row="4" Grid.Column="1" Text="{Binding ModelEmployee.Wage, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<TextBlock Text="Employeement Type" Grid.Row="5" Grid.Column="0" />
+				<TextBox Grid.Row="5" Grid.Column="1" Text="{Binding ModelEmployee.EmploymentType, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+
+				<Button Content="Save Employee" Name="SaveEmployee" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SaveEmployeeCommand}" />
+			</Grid>
+		</GroupBox>
+	</Grid>
 </UserControl>

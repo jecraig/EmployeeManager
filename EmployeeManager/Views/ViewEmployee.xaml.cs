@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EmployeeManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace EmployeeManager.Views
 		public ViewEmployee()
 		{
 			InitializeComponent();
+			var viewModel = new	ViewEmployeeVM();
+			DataContext = viewModel;
 		}
 	}
 }
