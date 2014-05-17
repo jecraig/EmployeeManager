@@ -1,0 +1,19 @@
+﻿<Window x:Class="EmployeeManager.Main"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Controls="clr-namespace:EmployeeManager.Views"
+        Title="Employee Manager" Height="300" Width="550">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="3*"/>
+		</Grid.ColumnDefinitions>
+
+		<Controls:ViewEmployee Grid.Column="1" />
+		<Controls:EmployeeList Grid.Column="0" />
+
+	</Grid>
+</Window>
