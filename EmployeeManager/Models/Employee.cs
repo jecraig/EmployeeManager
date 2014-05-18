@@ -122,9 +122,6 @@ namespace EmployeeManager.Models
 			}
 		}
 
-		/// <summary>
-		/// Returns true if this object has no validation errors.
-		/// </summary>
 		public bool IsValid
 		{
 			get
@@ -132,7 +129,7 @@ namespace EmployeeManager.Models
 				foreach (string property in ValidatedProperties)
 				{
 
-					if (this[property] != null) // there is an error
+					if (this[property] != null)
 						return false;
 				}
 
