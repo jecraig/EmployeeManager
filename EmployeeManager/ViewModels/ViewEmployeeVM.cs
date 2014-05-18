@@ -13,6 +13,9 @@ namespace EmployeeManager.ViewModels
 	public class ViewEmployeeVM : INotifyPropertyChanged
 	{
 		private Random random = new Random();
+		const int weeklyHours = 40;
+		const int payedWeeksInAYear = 52;
+		const decimal overtimeRate = 1.5M;
 
 		private Employee _savedEmployee;
 		public Employee SavedEmployee
@@ -112,16 +115,17 @@ namespace EmployeeManager.ViewModels
 		{
 			decimal rate;
 			decimal hours = WeeklyHours;
+
 			if (!ModelEmployee.IsHourly)
 			{
-				rate = ModelEmployee.Wage / 52;
+				rate = ModelEmployee.Wage / payedWeeksInAYear;
 			}
 			else
 			{
-				if (hours > 40)
+				if (hours > weeklyHours)
 				{
-					rate = 40 * ModelEmployee.Wage;
-					rate += (hours - 40) * ModelEmployee.Wage * 1.5M;
+					rate = weeklyHours * ModelEmployee.Wage;
+					rate += (hours - weeklyHours) * ModelEmployee.Wage * overtimeRate;
 				}
 				else
 				{
