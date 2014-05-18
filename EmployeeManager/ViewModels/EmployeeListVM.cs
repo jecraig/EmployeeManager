@@ -40,7 +40,7 @@ namespace EmployeeManager.ViewModels
 				{
 					_selectedEmployee = value;
 					Mediator.GetInstance().OnSelectedEmployeeChanged(this, _selectedEmployee);
-					OnPropertyChanged("SelectedCustomer");
+					OnPropertyChanged("SelectedEmployee");
 				}
 			}
 		}

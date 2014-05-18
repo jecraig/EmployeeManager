@@ -65,7 +65,7 @@ namespace EmployeeManager.ViewModels
 			set
 			{
 				_getWeeklyRateCommand = value;
-				OnPropertyChanged("GetHourlyRateCommand");
+				OnPropertyChanged("GetWeeklyRateCommand");
 			}
 		}
 
