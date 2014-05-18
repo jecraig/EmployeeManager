@@ -247,7 +247,7 @@ namespace EmployeeManager.Models
 
 		public override string ToString()
 		{
-			return this.FirstName + " " + this.LastName;
+			return this.LastName + ", " + this.FirstName;
 		}
 
 		public Employee Copy()
