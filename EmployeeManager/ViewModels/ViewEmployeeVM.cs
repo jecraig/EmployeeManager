@@ -99,7 +99,7 @@ namespace EmployeeManager.ViewModels
 
 		private void Initialize()
 		{
-			SaveEmployeeCommand = new SaveEmployeeCommand(UpdateEmployee);
+			SaveEmployeeCommand = new SaveEmployeeCommand(SaveEmployee);
 			CancelSaveEmployeeCommand = new CancelSaveEmployeeCommand(ReloadEmployee);
 			GetWeeklyRateCommand = new GetWeeklyRateCommand(CalculateWeeklyRate);
 			Mediator.GetInstance().SelectedEmployeeChanged += (s, e) =>
@@ -137,7 +137,7 @@ namespace EmployeeManager.ViewModels
 			ModelEmployee = SavedEmployee.Copy();
 		}
 
-		private void UpdateEmployee()
+		private void SaveEmployee()
 		{
 			if (CanSave)
 			{

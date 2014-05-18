@@ -15,7 +15,7 @@
 		<GroupBox Header="Employees" VerticalAlignment="Top" HorizontalAlignment="Left" MinHeight="355" MinWidth="200">
 			<StackPanel>
 				<Button Name="AddEmployee" Content="Add New Employee" Command="{Binding NewEmployeeCommand}" />
-				<ListBox ItemsSource="{Binding ModelEmployeeList}" SelectedItem="{Binding SelectedEmployee}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="300" Cursor="Hand" />
+				<ListBox ItemsSource="{Binding ModelEmployeeList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEmployee}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="300" Cursor="Hand" />
 			</StackPanel>
 		</GroupBox>
 	</Grid>

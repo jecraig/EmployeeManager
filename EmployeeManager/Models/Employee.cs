@@ -166,13 +166,13 @@ namespace EmployeeManager.Models
 
 				if (columnName == "Email")
 				{
-					if (string.IsNullOrEmpty(Email))
+					if (string.IsNullOrWhiteSpace(Email) || !Regex.IsMatch(Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
 						result = "Please enter an email address";
 				}
 
 				if (columnName == "PhoneNumber")
 				{
-					if (string.IsNullOrEmpty(PhoneNumber))
+					if (string.IsNullOrEmpty(PhoneNumber) || !Regex.IsMatch(PhoneNumber, @"^[2-9]\d{2}[-\s.]{0,1}\d{3}[-\s.]{0,1}\d{4}$"))
 						result = "Please enter a phone number";
 				}
 
@@ -221,7 +221,7 @@ namespace EmployeeManager.Models
 			newEmployee.FirstName = RandomNames[random.Next(RandomNames.Count)];
 			newEmployee.LastName = RandomNames[random.Next(RandomNames.Count)];
 			newEmployee.Email = newEmployee.FirstName + newEmployee.LastName + "@email.com";
-			newEmployee.PhoneNumber = random.Next(100, 1000).ToString() + random.Next(100, 1000).ToString() + random.Next(1000, 10000).ToString();
+			newEmployee.PhoneNumber = random.Next(100, 1000).ToString() + "-" + random.Next(100, 1000).ToString() + "-" + random.Next(1000, 10000).ToString();
 			newEmployee.IsHourly = random.Next(2) == 0;
 			newEmployee.Wage = random.Next(8, 100000);
 			newEmployee.Id = newEmployee.GenerateUniqueId(random, collection);
