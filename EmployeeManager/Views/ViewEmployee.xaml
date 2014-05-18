@@ -49,7 +49,7 @@
 				<TextBlock Text="Employeement Type" Grid.Row="5" Grid.Column="0" />
 				<StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1">
 					<RadioButton Content="Hourly" GroupName="EmploymentType" IsChecked="{Binding ModelEmployee.IsHourly, Mode=TwoWay, ValidatesOnDataErrors=True}" />
-					<RadioButton Content="Salary" GroupName="EmploymentType" IsChecked="{Binding ModelEmployee.IsHourly, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource BoolConverter}}" />
+					<RadioButton Content="Salary" GroupName="EmploymentType" IsChecked="{Binding ModelEmployee.IsHourly, ValidatesOnDataErrors=True, Converter={StaticResource BoolConverter}}" />
 				</StackPanel>
 
 				<Button Content="Save Employee" Name="SaveEmployee" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SaveEmployeeCommand}" />

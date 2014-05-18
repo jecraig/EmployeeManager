@@ -249,5 +249,28 @@ namespace EmployeeManager.Models
 		{
 			return this.FirstName + " " + this.LastName;
 		}
+
+		public Employee Copy()
+		{
+			var copy = new Employee();
+			copy.Id = this.Id;
+			copy.FirstName = this.FirstName;
+			copy.LastName = this.LastName;
+			copy.IsHourly = this.IsHourly;
+			copy.Email = this.Email;
+			copy.PhoneNumber = this.PhoneNumber;
+			copy.Wage = this.Wage;
+			return copy;
+		}
+
+		public void Save(Employee newValues)
+		{
+			this.FirstName = newValues.FirstName;
+			this.LastName = newValues.LastName;
+			this.IsHourly = newValues.IsHourly;
+			this.Email = newValues.Email;
+			this.PhoneNumber = newValues.PhoneNumber;
+			this.Wage = newValues.Wage;
+		}
 	}
 }

@@ -55,10 +55,16 @@ namespace EmployeeManager.ViewModels
 		{
 			if (CanSave)
 			{
-				if (!Employee.GetEmployees().Contains(ModelEmployee))
+				var employee = Employee.GetEmployees().FirstOrDefault(e => e.Id == ModelEmployee.Id);
+
+				if (employee == null)
 				{
 					ModelEmployee.Id = ModelEmployee.GenerateUniqueId(random, Employee.GetEmployees());
 					Employee.GetEmployees().Add(ModelEmployee);
+				}
+				else
+				{
+					employee.Save(ModelEmployee);
 				}
 			}
 		}
@@ -79,7 +85,7 @@ namespace EmployeeManager.ViewModels
 			}
 			else
 			{
-				ModelEmployee = selectedEmployee;
+				ModelEmployee = selectedEmployee.Copy();
 			}
 		}
 
