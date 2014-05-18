@@ -14,6 +14,17 @@ namespace EmployeeManager.ViewModels
 	{
 		private Random random = new Random();
 
+		private Employee _savedEmployee;
+		public Employee SavedEmployee
+		{
+			get { return _savedEmployee; }
+			set
+			{
+				_savedEmployee = value;
+				OnPropertyChanged("SavedEmployee");
+			}
+		}
+
 		private Employee _modelEmployee;
 		public Employee ModelEmployee
 		{
@@ -36,6 +47,17 @@ namespace EmployeeManager.ViewModels
 			}
 		}
 
+		private ICommand _cancelSaveEmployeeCommand;
+		public ICommand CancelSaveEmployeeCommand
+		{
+			get { return _cancelSaveEmployeeCommand; }
+			set
+			{
+				_cancelSaveEmployeeCommand = value;
+				OnPropertyChanged("CancelSaveEmployeeCommand");
+			}
+		}
+
 		public ViewEmployeeVM()
 		{
 			Initialize();
@@ -44,14 +66,20 @@ namespace EmployeeManager.ViewModels
 
 		private void Initialize()
 		{
-			SaveEmployeeCommand = new SaveEmployeeCommand(UpdatePerson);
+			SaveEmployeeCommand = new SaveEmployeeCommand(UpdateEmployee);
+			CancelSaveEmployeeCommand = new CancelSaveEmployeeCommand(ReloadEmployee);
 			Mediator.GetInstance().SelectedEmployeeChanged += (s, e) =>
 			{
 				LoadEmployee(e.Employee);
 			};
 		}
 
-		private void UpdatePerson()
+		private void ReloadEmployee()
+		{
+			ModelEmployee = SavedEmployee.Copy();
+		}
+
+		private void UpdateEmployee()
 		{
 			if (CanSave)
 			{
@@ -65,6 +93,7 @@ namespace EmployeeManager.ViewModels
 				else
 				{
 					employee.Save(ModelEmployee);
+					SavedEmployee = ModelEmployee.Copy();
 				}
 			}
 		}
@@ -86,6 +115,7 @@ namespace EmployeeManager.ViewModels
 			else
 			{
 				ModelEmployee = selectedEmployee.Copy();
+				SavedEmployee = ModelEmployee.Copy();
 			}
 		}
 

@@ -13,7 +13,7 @@
 		<converters:BoolConverter x:Key="BoolConverter" />
 		<local:ViewEmployeeVM x:Key="ViewEmployeeVM" />
 	</UserControl.Resources>
- 
+
 	<Grid x:Name="EmployeeViewRoot" DataContext="{StaticResource ViewEmployeeVM}">
 		<GroupBox Header="{Binding ModelEmployee.Id}" VerticalAlignment="Top" HorizontalAlignment="Left">
 			<Grid>
@@ -52,7 +52,10 @@
 					<RadioButton Content="Salary" GroupName="EmploymentType" IsChecked="{Binding ModelEmployee.IsHourly, ValidatesOnDataErrors=True, Converter={StaticResource BoolConverter}}" />
 				</StackPanel>
 
-				<Button Content="Save Employee" Name="SaveEmployee" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SaveEmployeeCommand}" />
+				<StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" >
+					<Button Content="Save Employee" Command="{Binding SaveEmployeeCommand}" />
+					<Button Content="Cancel" Command="{Binding CancelSaveEmployeeCommand}" />
+				</StackPanel>
 			</Grid>
 		</GroupBox>
 	</Grid>
