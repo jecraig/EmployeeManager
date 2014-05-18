@@ -218,7 +218,7 @@ namespace EmployeeManager.Models
 			newEmployee.FirstName = RandomNames[random.Next(RandomNames.Count)];
 			newEmployee.LastName = RandomNames[random.Next(RandomNames.Count)];
 			newEmployee.Email = newEmployee.FirstName + newEmployee.LastName + "@email.com";
-			newEmployee.PhoneNumber = random.Next(100, 1000).ToString() + "-" + random.Next(100, 1000).ToString() + "-" + random.Next(1000, 10000).ToString();
+			newEmployee.PhoneNumber = random.Next(200, 1000).ToString() + "-" + random.Next(100, 1000).ToString() + "-" + random.Next(1000, 10000).ToString();
 			newEmployee.IsHourly = random.Next(2) == 0;
 			newEmployee.Wage = random.Next(8, 100000);
 			newEmployee.Id = newEmployee.GenerateUniqueId(random, collection);
