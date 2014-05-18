@@ -58,6 +58,39 @@ namespace EmployeeManager.ViewModels
 			}
 		}
 
+		private ICommand _getWeeklyRateCommand;
+		public ICommand GetWeeklyRateCommand
+		{
+			get { return _getWeeklyRateCommand; }
+			set
+			{
+				_getWeeklyRateCommand = value;
+				OnPropertyChanged("GetHourlyRateCommand");
+			}
+		}
+
+		private decimal _weeklyHours;
+		public decimal WeeklyHours
+		{
+			get { return _weeklyHours; }
+			set
+			{
+				_weeklyHours = value;
+				OnPropertyChanged("WeeklyHours");
+			}
+		}
+
+		private decimal _weeklyRate;
+		public decimal WeeklyRate
+		{
+			get { return _weeklyRate; }
+			set
+			{
+				_weeklyRate = value;
+				OnPropertyChanged("WeeklyRate");
+			}
+		}
+
 		public ViewEmployeeVM()
 		{
 			Initialize();
@@ -68,10 +101,35 @@ namespace EmployeeManager.ViewModels
 		{
 			SaveEmployeeCommand = new SaveEmployeeCommand(UpdateEmployee);
 			CancelSaveEmployeeCommand = new CancelSaveEmployeeCommand(ReloadEmployee);
+			GetWeeklyRateCommand = new GetWeeklyRateCommand(CalculateWeeklyRate);
 			Mediator.GetInstance().SelectedEmployeeChanged += (s, e) =>
 			{
 				LoadEmployee(e.Employee);
 			};
+		}
+
+		private void CalculateWeeklyRate()
+		{
+			decimal rate;
+			decimal hours = WeeklyHours;
+			if (!ModelEmployee.IsHourly)
+			{
+				rate = ModelEmployee.Wage / 52;
+			}
+			else
+			{
+				if (hours > 40)
+				{
+					rate = 40 * ModelEmployee.Wage;
+					rate += (hours - 40) * ModelEmployee.Wage * 1.5M;
+				}
+				else
+				{
+					rate = hours * ModelEmployee.Wage;
+				}
+			}
+
+			WeeklyRate = rate;
 		}
 
 		private void ReloadEmployee()

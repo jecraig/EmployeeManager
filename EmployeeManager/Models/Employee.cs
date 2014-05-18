@@ -11,7 +11,7 @@ namespace EmployeeManager.Models
 {
 	public class Employee : INotifyPropertyChanged, IDataErrorInfo
 	{
-		public const double MinimumWage = 7.25;
+		public const decimal MinimumWage = 7.25M;
 
 		private string _id;
 		public string Id
@@ -79,8 +79,8 @@ namespace EmployeeManager.Models
 			}
 		}
 
-		private double _wage;
-		public double Wage
+		private decimal _wage;
+		public decimal Wage
 		{
 			get { return _wage; }
 			set

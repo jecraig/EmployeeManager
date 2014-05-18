@@ -11,6 +11,7 @@
 
 	<UserControl.Resources>
 		<converters:BoolConverter x:Key="BoolConverter" />
+		<converters:MoneyConverter x:Key="MoneyConverter" />
 		<local:ViewEmployeeVM x:Key="ViewEmployeeVM" />
 	</UserControl.Resources>
 
@@ -18,6 +19,7 @@
 		<GroupBox Header="{Binding ModelEmployee.Id}" VerticalAlignment="Top" HorizontalAlignment="Left">
 			<Grid>
 				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
@@ -56,6 +58,20 @@
 					<Button Content="Save Employee" Command="{Binding SaveEmployeeCommand}" />
 					<Button Content="Cancel" Command="{Binding CancelSaveEmployeeCommand}" />
 				</StackPanel>
+
+				<Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+					<StackPanel>
+						<TextBlock Text="Weekly Rate" />
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="Enter Weekly Hours" />
+							<TextBox Text="{Binding WeeklyHours, Mode=TwoWay}" />
+						</StackPanel>
+						<StackPanel Orientation="Horizontal">
+							<Button Content="Check Rate" Command="{Binding GetWeeklyRateCommand}" />
+							<TextBlock Text="{Binding WeeklyRate, Converter={StaticResource MoneyConverter}}" />
+						</StackPanel>
+					</StackPanel>
+				</Grid>
 			</Grid>
 		</GroupBox>
 	</Grid>
