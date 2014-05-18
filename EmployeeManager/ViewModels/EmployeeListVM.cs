@@ -14,21 +14,17 @@ namespace EmployeeManager.ViewModels
 {
 	public class EmployeeListVM : INotifyPropertyChanged
 	{
-		private ObservableCollection<Employee> _modelEmployeeList;
 		public ObservableCollection<Employee> ModelEmployeeList
 		{
-			get { return _modelEmployeeList; }
-			set
+			get
 			{
-				_modelEmployeeList = value;
-				OnPropertyChanged("ModelEmployeeList");
+				return Employee.GetEmployees();
 			}
 		}
 
 		public EmployeeListVM()
 		{
 			Initialize();
-			LoadEmployeeList();
 		}
 
 		private Employee _selectedEmployee;
@@ -68,11 +64,6 @@ namespace EmployeeManager.ViewModels
 		private void NewEmployee()
 		{
 			Mediator.GetInstance().OnSelectedEmployeeChanged(this, null);
-		}
-
-		private void LoadEmployeeList()
-		{
-			ModelEmployeeList = Employee.GetEmployees();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
