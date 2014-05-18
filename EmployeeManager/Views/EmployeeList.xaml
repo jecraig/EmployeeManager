@@ -4,18 +4,28 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:local="clr-namespace:EmployeeManager.ViewModels"
+			 xmlns:converters="clr-namespace:EmployeeManager.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="300">
 
 	<UserControl.Resources>
 		<local:EmployeeListVM  x:Key="EmployeeListVM" />
+		<converters:CapitalizeFirstLetter x:Key="Capitalize" />
+		
+		<DataTemplate x:Key="DisplayEmployee">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{Binding FirstName, Converter={StaticResource Capitalize}}"/>
+				<TextBlock Text=" "/>
+				<TextBlock Text="{Binding LastName, Converter={StaticResource Capitalize}}"/>
+			</StackPanel>
+		</DataTemplate>
 	</UserControl.Resources>
 
 	<Grid x:Name="EmployeeListRoot" DataContext="{StaticResource EmployeeListVM}">
 		<GroupBox Header="Employees" VerticalAlignment="Top" HorizontalAlignment="Left" MinHeight="355" MinWidth="200">
 			<StackPanel>
 				<Button Name="AddEmployee" Content="Add New Employee" Command="{Binding NewEmployeeCommand}" />
-				<ListBox ItemsSource="{Binding ModelEmployeeList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedEmployee}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="300" Cursor="Hand" />
+				<ListBox ItemsSource="{Binding Path=ModelEmployeeList,Mode=OneWay,UpdateSourceTrigger=PropertyChanged,NotifyOnTargetUpdated=True}" ItemTemplate="{StaticResource DisplayEmployee}"  SelectedItem="{Binding SelectedEmployee}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="300" Cursor="Hand" />
 			</StackPanel>
 		</GroupBox>
 	</Grid>
