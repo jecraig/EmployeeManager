@@ -12,6 +12,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.ViewModels
 {
+	/// <summary>
+	/// The view model that handles the employee collection
+	/// </summary>
 	public class EmployeeListVM : INotifyPropertyChanged
 	{
 		public ObservableCollection<Employee> ModelEmployeeList

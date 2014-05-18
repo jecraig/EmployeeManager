@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// The command to cancel the saving of an employee
+	/// </summary>
 	public class CancelSaveEmployeeCommand : ICommand
 	{
 		Action executeMethod;

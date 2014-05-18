@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// The command to create a blank employee, this will not be saved to the collection
+	/// </summary>
 	public class NewEmployeeCommand : ICommand
 	{
 		Action executeMethod;

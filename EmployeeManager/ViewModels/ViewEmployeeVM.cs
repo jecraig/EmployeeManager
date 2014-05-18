@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.ViewModels
 {
+	/// <summary>
+	/// This is the view model that handles the employee model
+	/// </summary>
 	public class ViewEmployeeVM : INotifyPropertyChanged
 	{
 		private Random random = new Random();

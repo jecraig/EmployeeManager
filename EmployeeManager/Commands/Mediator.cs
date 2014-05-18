@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// A go between class which houses the events that the seperated view models can subscribe to
+	/// </summary>
 	class Mediator
 	{
 		private static readonly Mediator _instance = new Mediator();

@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace EmployeeManager.Converters
 {
+	/// <summary>
+	/// This will invert a bool
+	/// </summary>
 	[ValueConversion(typeof(bool), typeof(bool))]
 	public class BoolConverter : IValueConverter
 	{

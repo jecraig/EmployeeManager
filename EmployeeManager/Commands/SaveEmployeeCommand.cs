@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// The command to save an employee in the collection
+	/// </summary>
 	public class SaveEmployeeCommand : ICommand
 	{
 		Action executeMethod;

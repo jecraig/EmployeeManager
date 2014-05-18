@@ -8,7 +8,9 @@ using System.Windows.Data;
 
 namespace EmployeeManager.Converters
 {
-
+	/// <summary>
+	/// This will capitalize the first letter of a string.
+	/// </summary>
 	[ValueConversion(typeof(bool), typeof(bool))]
 	public class CapitalizeFirstLetter : IValueConverter
 	{

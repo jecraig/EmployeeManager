@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// The command to calculate the weekly rate of an employee
+	/// </summary>
 	public class GetWeeklyRateCommand : ICommand
 	{
 		Action executeMethod;

@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace EmployeeManager.Commands
 {
+	/// <summary>
+	/// Event args for the OnSelectedEmployeeChanged event
+	/// </summary>
 	public class SelectedEmployeeEventArgs : EventArgs
 	{
 		public Employee Employee { get; set; }

@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace EmployeeManager.Converters
 {
+	/// <summary>
+	/// This will display a decimal in a money string format
+	/// </summary>
 	[ValueConversion(typeof(bool), typeof(bool))]
 	public class MoneyConverter : IValueConverter
 	{

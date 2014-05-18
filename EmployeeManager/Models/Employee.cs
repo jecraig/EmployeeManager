@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace EmployeeManager.Models
 {
+	/// <summary>
+	/// The employee model
+	/// </summary>
 	public class Employee : INotifyPropertyChanged, IDataErrorInfo
 	{
 		public const decimal MinimumWage = 7.25M;
